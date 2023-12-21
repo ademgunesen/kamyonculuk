@@ -72,7 +72,7 @@ from torch.optim.lr_scheduler import ReduceLROnPlateau
 
 def train_validate(epoch, lr, weight_decay, model, device, train_loader, valid_loader, log_dir, encoder, freeze_encoder = False):
     # Initialize with WeightedCombinationLoss
-    loss = WeightedCombinationLoss(ce_weight = 1,dice_weight = 0)
+    loss = WeightedCombinationLoss(ce_weight = 0,dice_weight = 1)
 
     metrics = [
         ut.metrics.IoU(threshold=0.5),
@@ -130,6 +130,7 @@ def train_validate(epoch, lr, weight_decay, model, device, train_loader, valid_l
             print("Best model saved")
 
         scheduler.step(valid_logs['weighted_combination_loss'])  # Scheduler updates learning rate based on validation performance
+    return model
 
 
 def test_model(cropped_res, stride, best_model, device, encoder, encoder_weight, log_dir, resolution, data):
