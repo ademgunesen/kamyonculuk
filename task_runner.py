@@ -3,14 +3,14 @@ import wandb
 from main import main_task
 from mlops_utils import derive_dataset_conf_parameters
 
-device = "cuda:2"
+device = "cuda"
 
 dataset_conf = {}
 model_conf = {}
 training_conf = {}
 augment_conf = {}
 
-datasets_root = "/home/braincreator/daniel/ademgunesen/square_format"
+datasets_root = "/content/square/"
 
 dataset_conf['dataset_root']      = datasets_root
 dataset_conf['preprocessed']      = False
@@ -28,7 +28,7 @@ dataset_conf['data']              = "ma"
 dataset_conf = derive_dataset_conf_parameters(dataset_conf)
 ############################################################################################################ 
 
-model_conf['decoder']           = "UnetPlusPlus"
+model_conf['decoder']           = "Unet"
 model_conf['encoder']           = "vgg19"
 model_conf['encoder_weight']    = "imagenet"
 model_conf['pretrained_weights']= False
@@ -48,7 +48,7 @@ task_conf['model_conf'] = model_conf
 task_conf['training_conf'] = training_conf
 task_conf['augment_conf'] = augment_conf
 
-prepare_data_step = False
+prepare_data_step = True
 train_step = True
 test_step = True
 email_step = False

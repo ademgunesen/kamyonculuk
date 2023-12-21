@@ -1,6 +1,6 @@
 # Define variables
 lesion_type="ma"
-image_type="Denoised/all_4096"
+image_type="Original"
 git_repo="https://github.com/ademgunesen/kamyonculuk.git"
 crop_size="1152"
 
